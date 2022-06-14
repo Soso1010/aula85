@@ -1,35 +1,41 @@
+//Criar uma referência para tela
 canvas = document.getElementById('myCanvas');
-ctx = canvas.getContext("2d");
+ctx = canvas.getContext("2d"); //faltou um ; no final do comando
 
-nasaMarsImagesArray = ["nasa_image_1.jpg","nasa_image_2.jpeg", "nasa_image_3.jpg","nasa_image_4.jpg"];
+//Dê altura e largura específicas para a imagem do carro
+greencar_width = 75; //o nome da variável deve ser greencar_width 
+greencar_height= 100; //o nome da variável deve ser greencar_height
 
-randomNumber = Math.floor(Math.random() * 4);
-console.log(randomNumber);
-roverWidth = 100;
-roverHeight = 90;
+background_Image = "parkingLot.jpg"; //o nome da variável deve ser background_Image
+greencar_Image = "car2.png"; //o nome da variável deve ser greencar_Image
 
-backgroundImage = nasaMarsImagesArray[randomNumber];
-console.log("backgroundImage = " + backgroundImage);
-roverImage = "rover.png";
-
-roverX = 10;
-roverY = 10;
+//Defina a posição inicial para uma imagem de carro.
+greencar_x= 5;
+greencar_y = 225;
 
 function add() {
-	backgroundImgTag = new Image(); //definindo uma variável com uma nova imagem
-	backgroundImgTag.onload = uploadBackground; // definindo uma função, ao carregar esta variável
-	backgroundImgTag.src = backgroundImage;   // carregando a imagem
+	//carregar carro e imagens de fundo na tela.
+	background_Imgtag =  new Image();
+	background_Imgtag.onload = uploadBackground;
+	background_Imgtag.src=background_Image;
 
-	roverImgTag = new Image(); //definindo uma variável com uma nova imagem
-	roverImgTag.onload = uploadRover; // definindo uma função, ao carregar esta variável
-	roverImgTag.src = roverImage;   // carregando a imagem
-
-function uploadBackground() {
-	ctx.drawImage(backgroundImgTag, 0, 0, canvas.width, canvas.height);
+	grenncar_Imgtag =  new Image();
+	greencar_Imgtag.onload = uploadgreencar;
+	greencar_Imgtag.src=greencar_Image;
 }
 
-function uploadRover() {
-	ctx.drawImage(roverImgTag, roverX, roverY, roverWidth, roverHeight);
+function uploadBackground() {
+	//Defina a função ‘uploadBackground’
+ctx.drawIMage(background_Imgtag, 0, 0, canvas.width, canvas.height);
+// na linha acima substitua greencar_Imgtag por backgroud_Imgtag, greencar_x por 0, greencar_y por 0, greencar_height por canvas.width,
+// e  greencar_width por carvas.height
+}
+
+function uploadgreencar() { //troque por uploadgreencar, pois nas outras partes do código está tudo minúsculo
+	//Defina a função ‘uploadGreenCar’. ← ignore essa instrução, pois precisa estar tudo minúsculo para ficar igual ao restante do código
+	ctx.drawIMage(greencar_Imgtag, greencar_x, greencar_y, greencar_width, greencar_height);
+	//inverta a posição do greencar_height e do greencar_widht (largura primeiro, depois altura)
+	
 }
 
 
@@ -44,61 +50,64 @@ function myKeyDown(e)
 			up();
 			console.log("up");
 		}
+	
 		if(keyPressed == '40')
 		{
 			down();
 			console.log("down");
 		}
+		
 		if(keyPressed == '37')
 		{
 			left();
 			console.log("left");
 		}
+	
 		if(keyPressed == '39')
 		{
 			right();
 			console.log("right");
 		}
+		
+		
 }
 
 function up()
 {
-	if(roverY >=0)
-	{
-		roverY = roverY - 10;
-		console.log("Quando a seta para cima é pressionada,  x = " + roverX + " | y = " +roverY);
-		 uploadBackground();
-		 uploadRover();
-	}
+	//Definir função para mover o carro para cima
+	 if(greencar_y >=0)
+	 greencar_y = greencar_y - 10;
+	 console.log("When up arrow is pressed, x=" + greencar_x + "| y =" +greencar_y);
+	 uploadBackground();
+	 uploadgreencar(); 
 }
+
 function down()
 {
-	if(roverY <=500)
-	{
-		roverY =roverY+ 10;
-		console.log("Quando a seta para baixo é pressionada,  x = " + roverX + " | y = " +roverY);
-		uploadBackground();
-		uploadRover();
-	}
+	//Definir função para mover o carro para baixo
+	if(greencar_y <=350) //aqui greencar_y deve ser <=350
+	 greencar_y = greencar_y + 10; //aqui greencar_y soma 10 para ir para baixo
+	 console.log("When up arrow is pressed, x=" + greencar_x + "| y =" +greencar_y);
+	 uploadBackground();
+	 uploadgreencar(); 
 }
+
 function left()
 {
-	if(roverX >= 0)
-	{
-		roverX =roverX - 10;
-		console.log("Quando a seta para esquerda é pressionada,  x = " + roverX + " | y = " +roverY);
-		uploadBackground();
-		 uploadRover();
-	}
+	//Definir função para mover o carro para o lado esquerdo
+	if(greencar_x >=0) //aqui deve ser greencar_x pois esquerda é eixo horizontal, ou seja, eixo x
+	 greencar_x = greencar_x - 10; //trocar para greencar_x
+	 console.log("When up arrow is pressed, x=" + greencar_x + "| y =" +greencar_y);
+	 uploadBackground();
+	 uploadgreencar(); 
 }
+
 function right()
 {
-	if(roverX <= 700)
-	{
-		roverX =roverX + 10;
-		console.log("Quando a seta para direita é pressionada,  x = " + roverX + " | y = " +roverY);
-		uploadBackground();
-		uploadRover();
-   }
-}
+	//Definir função para mover o lado direito do carro
+	if(greencar_x <=750) //trocar para greencar_x e deve ser <=750
+	 greencar_x = greencar_x + 10; // trocar por greencar_x e soma 10 para ir para a direita
+	 console.log("When up arrow is pressed, x=" + greencar_x + "| y =" +greencar_y);
+	 uploadBackground();
+	 uploadgreencar(); 
 }
